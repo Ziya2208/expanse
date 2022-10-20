@@ -155,7 +155,7 @@ const Register = () => {
         <section style={registrationBoxStyle}>
           <h1>Success!</h1>
           <p>
-            <a style={{ fontFamily: 'Open Sans', color: '#5E72E4', textDecoration: 'none', fontWeight: 600, fontSize: '16px', paddingLeft: '10px'}} href="./Login">Sign In</a>
+            <a style={{ fontFamily: 'Open Sans', color: '#5E72E4', textDecoration: 'none', fontWeight: 600, fontSize: '16px', paddingLeft: '10px'}} href="/">Sign In</a>
           </p>
         </section>
       ) : (

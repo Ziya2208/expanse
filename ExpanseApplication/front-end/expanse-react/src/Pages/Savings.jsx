@@ -239,7 +239,16 @@ function SavingsPage(){
 
 
     const handleSubmit = (event) => {
-        axios.post('/savings/saving-goals', {title: title,  date: date, amount: amount});
+        event.preventDefault();
+        axios.post('/savings/saving-goals', {title: title,  date: date, amount: amount})
+        .then(response => {
+            axios.get('/savings/saving-goals')
+            .then(response => {
+                console.log(response.data)
+                setGoals(response.data)
+            })
+        });
+        event.target.reset();
     }
 
     let amountFormatter = Intl.NumberFormat('de-DE', { 

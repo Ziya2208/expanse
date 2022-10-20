@@ -1,4 +1,4 @@
-import "../../index.css";
+import "../../App.css";
 import React, {useState} from "react";
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -10,8 +10,16 @@ import Button from '@mui/material/Button';
 import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios';
 import FormControl from '@mui/material/FormControl';
-import Grid from '@mui/material/Grid';
 import { useAppState } from "../../store";
+import styled from "styled-components";
+
+
+const Form = styled.form`
+    display: flex;
+    flex-direction: row;
+`
+
+
  
 
 function TransactionsInputForm({onClose}) { //passing props from parent to child  with object distructoring (assignment)
@@ -114,20 +122,19 @@ function TransactionsInputForm({onClose}) { //passing props from parent to child
 
     return (
         <div>
-            <form onSubmit={handleSubmit} style={{marginTop: '10px'}}>
-            <Grid container
-            spacing={1}>
-            <Grid item xs>
-            <FormControl>
+            <Form onSubmit={handleSubmit}>
             <TextField 
-            label="Title"
-            id="title" required value={title} 
-            onChange={(e) => setTitle(e.target.value)} />
-            </FormControl>
-            </Grid>
-            <Grid item xs>
+            placeholder="Title"
+            value={title} 
+            onChange={(e) => setTitle(e.target.value)}
+            margin='normal'
+            variant="outlined"
+            sx={{minWidth: '120px', maxWidth: '140px', marginRight: '10px', height: '20px'}}
+            />
             <FormControl>
             <Autocomplete
+                size="small"
+                sx={{fontFamily: 'Sora', minWidth: '180px', marginRight: '15px', marginTop: '12px'}}
                 value={category}
                 onChange={(e, newValue) => { setCategory(newValue); }}
                 id="category"
@@ -136,36 +143,29 @@ function TransactionsInputForm({onClose}) { //passing props from parent to child
                 onInputChange={(event, newInputValue) => {
                     setCategory(newInputValue);
                   }}
-                renderInput={(params) => <TextField label="Category" {...params}/>}
+                renderInput={(params) => <TextField placeholder="Category" {...params}/>}
                 />
             </FormControl>
-            </Grid>
-            <Grid item xs>
-            <FormControl>
-            <InputLabel id="type">Type</InputLabel>
-            <Select id="type" label="Type" placeholder="Expense" value={type} onChange={(e) => setType(e.target.value)} fullWidth>
+            <FormControl sx={{marginRight: '15px'}}>
+            <Select size="small" id="type" placeholder="Expense" value={type} onChange={(e) => setType(e.target.value)} sx={{marginTop: '12px', minWidth: '140px'}} fullWidth>
             <MenuItem value="Expense">Expense</MenuItem>
             <MenuItem value="Income">Income</MenuItem>
             </Select>
             </FormControl>
-            </Grid>
-            <Grid item xs>
-            <FormControl>
-            <InputLabel id="amount">Amount</InputLabel>
+            <FormControl sx={{marginRight: '15px'}}>
             <OutlinedInput
                 id="amount"
-                label="amount"
+                placeholder="1234"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
                 startAdornment={<InputAdornment position="start">€</InputAdornment>}
+                sx={{marginTop: '12px', maxWidth: '140px'}}
             />
             </FormControl>
-            </Grid>
-            <Button type="submit" variant="contained" color="success" style={{marginLeft: '10px'}} >
+            <Button type="submit" variant="contained" color="success" style={{marginLeft: '10px', marginTop: '12px', maxWidth: '120px'}} >
                 Add
             </Button> 
-            </Grid>
-            </form>
+            </Form>
         </div>
     )
 }

@@ -107,7 +107,7 @@ export function SavingsCard({title, amount, buttonHandler}){
                     </div>
                     <div style={rectangleStyle}></div>
                 </div>
-                <Button style={{float: 'right', marginTop: '25px'}} onClick={buttonHandler}>Add/Deduct</Button>
+                <Button style={{float: 'right', marginTop: '25px', fontSize: '15px'}} onClick={buttonHandler}>Add/Deduct</Button>
                 <h1 style={amountStyle}>{amount}</h1>
             </div>
     )

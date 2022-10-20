@@ -32,9 +32,6 @@ function TotalBalanceComponent() {
         style: 'currency', 
         currency: 'EUR' })
 
-
-    //<Card title={'Total Balance'} amount={amountFormatter.format(appState.totalBalance)}/>
-
     return (
 
         <Card title={'Total Balance'} amount={amountFormatter.format(appState.totalBalance)} imgSrc={"https://cdn-icons-png.flaticon.com/512/2315/2315648.png"}/>

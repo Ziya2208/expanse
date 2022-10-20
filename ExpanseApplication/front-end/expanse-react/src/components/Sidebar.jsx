@@ -160,7 +160,7 @@ const Sidebar = () => {
         </Logo>
         <SlickBar clicked={click}>
           <Item onClick={() => setClick(false)}>
-          <Link to="/">
+          <Link to="/home">
             <img src={Home} alt="Home" />
           </Link>
             <Text clicked={click}>Home</Text>

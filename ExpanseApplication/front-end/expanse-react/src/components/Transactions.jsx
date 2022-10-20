@@ -55,7 +55,7 @@ function TransactionsComponent() {
 
 
       const cardStyle = {
-        width: '440px',
+        width: '470px',
         height: '253px',
         overflow: 'scroll' 
     }
@@ -124,9 +124,9 @@ function TransactionsComponent() {
             </Table>
         </div>
 
-            <Dialog open={open} onClose={handleClose} sx={{width: '1500px'}}>
-                <DialogTitle sx={{marginBottom: '5px'}}>Add Transaction: </DialogTitle>
-                <DialogContent fullWidth maxWidth="xl">
+            <Dialog open={open} onClose={handleClose} maxWidth='1500px'>
+                <DialogTitle>Add Transaction: </DialogTitle>
+                <DialogContent>
                     <TransactionsInputForm onClose={handleClose}/>   
                 </DialogContent>
             </Dialog>

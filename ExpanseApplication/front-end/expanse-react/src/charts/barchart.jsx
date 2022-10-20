@@ -1,48 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Chart } from 'primereact/chart';
 import axios from 'axios';
 import '../App.css';
+import { appStateContext } from "../store";
 
 const BarChart = () => {
 
+    const appState = useContext(appStateContext);
+
     axios.defaults.baseURL = 'http://localhost:8080';
 
-    async function getTransactionExpenses() {
-        try {
-            return await axios.get('/transaction/expenses')
-                .then(response => {
-                    console.log(response.data)
-                    response.data.map(transaction => {
-                        transactionExpense.push(transaction.amount)
-                        transactionDates.push(transaction.date)
-                        return null;
-                    })
-                })
-        }
-        catch (err) {
-            console.log(err)
-        }
-    }
+    useEffect(()=> {
+        axios.get('/transaction/expenses')
+        .then(response => {
+            response.data.map(transaction => {
+                transactionExpense.push(transaction.amount)
+                transactionDates.push(transaction.date)
+                return null;
+            })
+        })
+    }, [appState.transactions])
+    
 
-    async function getTransactionIncomes() {
-        try {
-            return await axios.get('/transaction/incomes')
+    useEffect(()=>{
+        axios.get('/transaction/incomes')
                 .then(response => {
-                    console.log(response.data)
                     response.data.map(transaction => {
                         transactionIncome.push(transaction.amount)
                         transactionDates.push(transaction.date)
                         return null;
                     })
                 })
-        }
-        catch (err) {
-            console.log(err)
-        }
-    }
+    }, [appState.transactions])
 
-    getTransactionExpenses();
-    getTransactionIncomes();
+
 
     const transactionIncome = [];
     const transactionExpense = [];
@@ -59,8 +50,6 @@ const BarChart = () => {
         totaleIncomeOfDay = amount + totaleIncomeOfDay
     }
 
-    console.log(transactionIncome, "incomes_TEST")
-    console.log(transactionExpense, "expense_TEST")
 
 
     const [basicData] = useState({
@@ -77,7 +66,7 @@ const BarChart = () => {
                 data: transactionExpense
             }
         ]
-    }, []);
+    }, [appState.transactions]);
 
     const getLightTheme = () => {
         let basicOptions = {
@@ -123,7 +112,5 @@ const BarChart = () => {
 
     )
 }
-
-
 
 export default BarChart;

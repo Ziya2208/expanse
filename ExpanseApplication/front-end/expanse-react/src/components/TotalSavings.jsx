@@ -49,7 +49,7 @@ function TotalSavingComponent() {
         <Dialog open={savingDialog} onClose={handleClose} sx={{ minWidth: '1500px' }}>
             <DialogTitle sx={{ marginBottom: '5px' }}>Add/Deduct Saving: </DialogTitle>
             <DialogContent sx={{display: 'inline-block', minWidth: '500px'}} onClose={handleClose} fullWidth maxWidth="xl">
-                <SavingDialog />
+                <SavingDialog onClose={handleClose}/>
             </DialogContent>
         </Dialog>
         </>

@@ -9,10 +9,14 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import { appStateContext } from '../../store';
+import styled from "styled-components";
 
+const Form = styled.form`
+    display: flex;
+    flex-direction: row;
+`
 
-
-function SavingDialog(){
+function SavingDialog({onClose}){
 
     axios.defaults.baseURL = 'http://localhost:8080';
 
@@ -20,7 +24,8 @@ function SavingDialog(){
     const [type, setType] = useState();
     const appState = useContext(appStateContext);
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         if (type === 'Deduct'){
             axios.post(`/savings/deduct?amount=${amount}`)
             .then(response => {
@@ -32,6 +37,7 @@ function SavingDialog(){
                     })
                 })
             })
+            onClose()
         }
         else{
             axios.post(`/savings/add?amount=${amount}`)
@@ -44,6 +50,7 @@ function SavingDialog(){
                     })
                 })
             })
+            onClose()
         }
     }
 
@@ -51,36 +58,35 @@ function SavingDialog(){
 
     return (
         <>
-        <form onSubmit={handleSubmit}>
-        <Grid container spacing={2} sx={{marginTop: '5px'}}>
-            <Grid item xs={12} sm={6} md={6}>
+        <Form onSubmit={handleSubmit}>
+        <Grid container spacing={2}>
+            <Grid item xs={12} sm={6} md={4}>
             <FormControl>
                 <OutlinedInput
                     id="amount"
-                    label="Amount"
+                    placeholder="Amount"
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
                     startAdornment={<InputAdornment position="start">€</InputAdornment>} />
             </FormControl>
             </Grid>
-            <Grid item xs={12} sm={6} md={6}>
+            <Grid item xs={12} sm={6} md={4}>
             <FormControl>
-                <InputLabel id="type">Add/Deduct</InputLabel>
-                <Select id="type" label="Add/Deduct" placeholder="Add/Deduct" value={type} onChange={(e) => setType(e.target.value)} fullWidth>
+                <Select sx={{minWidth: '140px'}} size="small" id="type" placeholder="Add/Deduct" value={type} onChange={(e) => setType(e.target.value)} fullWidth>
                 <MenuItem value="Deduct">Deduct</MenuItem>
                 <MenuItem value="Add">Add</MenuItem>
             </Select>
             </FormControl>
             </Grid>
-            <Grid xs={12} sm={6} md={12}>
+            <Grid xs={12} sm={6} md={4}>
             <FormControl>
-            <Button type="submit " variant="contained" color="success" style={{ marginLeft: '10px' }}>
+            <Button type="submit " variant="contained" color="success" style={{ marginLeft: '10px', marginTop: '15px'}}>
                 Submit
             </Button>
             </FormControl>
             </Grid>
             </Grid>
-            </form>
+            </Form>
             </> 
     )
 }
