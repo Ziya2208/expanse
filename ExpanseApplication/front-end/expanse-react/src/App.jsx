@@ -28,19 +28,21 @@ function App() {
     <>
     <AppStateProvider>
     <Router>
-      <Sidebar/>
-      <Layout>
       <div className='content'>
         <Routes>
           <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<HomeDashboard/>}/>
+          <Route path="/" element={<Login />} />
+        </Routes>
+      </div>
+      <Sidebar/>
+      <div className='content'>
+        <Routes>
+          <Route path="/home" element={<HomeDashboard/>}/>
           <Route path="/savings" element={<SavingsPage/>}/>
           <Route path="/leaderboard" element={<LeaderboardPage/>}/>
           <Route path="/portfolio" element={<Portfolio/>}/>
         </Routes>
       </div>
-      </Layout>
     </Router>
     </AppStateProvider>
     </>

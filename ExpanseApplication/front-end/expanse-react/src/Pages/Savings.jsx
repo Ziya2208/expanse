@@ -2,6 +2,7 @@ import { Box, Grid } from '@mui/material';
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import '../App.css';
+import Sidebar from '../components/Sidebar';
 import GoalProgressLine from '../SavingsComponents/Addgoal';
 import { appStateContext } from '../store';
 
