@@ -20,7 +20,6 @@ public class CategoriesController {
     }
 
 
-    @CrossOrigin
     @GetMapping
     public List<Categories> categoriesList(){
         return categoriesService.getCategories();

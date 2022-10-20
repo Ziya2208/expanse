@@ -3,23 +3,24 @@
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400&family=Nunito&display=swap');
 
 
-:root{
+:root {
     /*colors*/
-    --black:#09090c;
+    --black: #09090c;
     --grey: #a4b2bc;
     --white: #fff;
-    --background: rgba(137,171,245, 0.37);
+    --background: rgba(137, 171, 245, 0.37);
 
 }
 
-*,*::before,*::after
-{
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.body{
+.body {
     background-color: white;
     font-family: "M PLUS Rounded 1c", sans-serif;
     font-family: "Nunito", sans-serif;

@@ -18,13 +18,11 @@ public class AmountsController {
         this.balanceService = balanceService;
     }
 
-    @CrossOrigin
     @GetMapping(value="/balance")
     public Long userBalance(){
         return balanceService.getBalance();
     }
 
-    @CrossOrigin
     @PostMapping(value="/setbalance")
     public void userBalance(@RequestParam Long amount){
         Balance newBalance = new Balance(amount);

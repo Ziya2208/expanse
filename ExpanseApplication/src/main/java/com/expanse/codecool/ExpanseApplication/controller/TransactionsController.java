@@ -27,13 +27,11 @@ public class TransactionsController {
         this.balanceService = balanceService;
     }
 
-    @CrossOrigin
     @GetMapping
     public List<Transaction> transactionTable(){
         return transactionService.fetchTransactions();
     }
 
-    @CrossOrigin
     @PutMapping(value="/addexpense")
     @ResponseBody
     public void addExpense(@RequestParam String title, String category, Long amount) throws Exception {
@@ -55,7 +53,6 @@ public class TransactionsController {
     }
 
 
-    @CrossOrigin
     @PutMapping(value="/addincome")
     public void addIncome(@RequestParam String title, String category, Long amount){
         LocalDate date = LocalDate.now();
@@ -67,25 +64,21 @@ public class TransactionsController {
     }
 
 
-    @CrossOrigin
     @GetMapping(value="/incomes")
     public List<Transaction> transactionIncomes(){
         return transactionService.fetchIncomes();
     }
 
-    @CrossOrigin
     @GetMapping(value="/expenses")
     public List<Transaction> transactionExpenses(){
         return transactionService.fetchExpenses();
     }
 
-    @CrossOrigin
     @GetMapping(value="/expensesvalue")
     public Long transactionExpensesValue(){
         return transactionService.sumExpenses();
     }
 
-    @CrossOrigin
     @GetMapping(value="/incomesvalue")
     public Long transactionIncomesValue(){
         return transactionService.sumIncomes();

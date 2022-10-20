@@ -26,8 +26,6 @@ public class SavingsController {
         this.savingGoalService = savingGoalService;
     }
 
-
-    @CrossOrigin
     @GetMapping
     public Long savingBalance(){
         return savingService.getSavingAmount();
